@@ -1,0 +1,79 @@
+name: Publish and deploy
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'deploy'
+  cancel-in-progress: false
+
+jobs:
+  lint:
+    name: Publish and deploy
+    runs-on: ubuntu-latest
+    steps:
+      # 签出分支
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      # 获取tag版本
+      # - name: Get the version
+      #   id: get_version
+      #   run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
+      # 设置node环境
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # 设置pnpm
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8.7.1
+
+      # 设置 pnpm 缓存文件
+      - name: Cache pnpm
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+          key: pnpm-cache-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+
+      # 恢复项目依赖
+      - name: Install
+        env:
+          # HUSKY: 0
+          SKIP_INSTALL_SIMPLE_GIT_HOOKS: 1
+          SKIP_SIMPLE_GIT_HOOKS: 1
+        run: |
+          pnpm install
+
+      # 构建项目
+      - name: Run build
+        env:
+          NODE_ENV: production
+          NODE_OPTIONS: --max_old_space_size=8192
+        run: |
+          pnpm build
+
+      # 发布npm包
+      - name: Publish
+        uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_AUTH_TOKEN }}
+
+      # 部署文档
+      # - name: Deploy GitHub Pages site
+      #   uses: JamesIves/github-pages-deploy-action@v4
+      #   with:
+      #     folder: ./docs
