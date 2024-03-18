@@ -2,8 +2,8 @@ name: Publish and deploy
 
 on:
   push:
-    tags:
-      - v*
+    branches:
+      - master
 
 permissions:
   contents: write
@@ -20,15 +20,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # 签出分支
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 2
+      - uses: actions/checkout@v4
 
-      # 获取tag版本
-      # - name: Get the version
-      #   id: get_version
-      #   run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+      # 设置 git
+      - name: Setup git
+        run: |
+          git config --local user.email aiden_fe@users.noreply.github.com
+          git config --local user.name AidenFEBot
 
       # 设置node环境
       - name: Setup node
@@ -58,6 +56,20 @@ jobs:
         run: |
           pnpm install
 
+      # 同步版本及推送标签
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      # 更新npm版本
+      - name: Updated version
+        run: |
+          npm pkg set version=${{ steps.tag_version.outputs.new_version }}
+          git add -A
+          git commit -m "chore: published tag ${{ steps.tag_version.outputs.new_tag }}"
+
       # 构建项目
       - name: Run build
         env:
@@ -66,11 +78,25 @@ jobs:
         run: |
           pnpm build
 
+      # 创建Github release
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
+
       # 发布npm包
       - name: Publish
         uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_AUTH_TOKEN }}
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
 
       # 部署文档
       # - name: Deploy GitHub Pages site
