@@ -37,9 +37,9 @@ jobs:
 
       - name: Updated version
         run: |
-          npm pkg set version=${{ steps.tag_version.outputs.new_tag }}
+          npm pkg set version=${{ steps.tag_version.outputs.new_version }}
           git add -A
-          git commit -m "chore: created tag ${{ steps.tag_version.outputs.new_tag }}"
+          git commit -m "chore: published tag ${{ steps.tag_version.outputs.new_tag }}"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
