@@ -11,17 +11,20 @@ const defaultErrorInterceptor: HttpTelegramErrorInterceptor = (error) => {
   throw new Error(`[${error.response?.status || 'Api Error'}]: ${error.message || error}`);
 };
 
-const Api = new Telegram({
-  interceptors: {
-    response: defaultResInterceptor,
-    responseError: defaultErrorInterceptor,
-  },
-})
+const Api = new Telegram()
   .register('github', {
     baseURL: 'https://api.github.com',
+    interceptors: {
+      response: defaultResInterceptor,
+      responseError: defaultErrorInterceptor,
+    },
   })
   .register('npm', {
     baseURL: 'https://registry.npmjs.org',
+    interceptors: {
+      response: defaultResInterceptor,
+      responseError: defaultErrorInterceptor,
+    },
   });
 
 export default Api;

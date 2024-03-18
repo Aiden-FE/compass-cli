@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@compass-aiden/helpers':
+    specifier: ^0.1.1
+    version: 0.1.1
   '@compass-aiden/telegram':
     specifier: ^2.1.0
     version: 2.1.0(axios@1.6.7)
@@ -46,6 +49,9 @@ devDependencies:
   '@rollup/plugin-terser':
     specifier: ^0.4.4
     version: 0.4.4(rollup@4.13.0)
+  '@types/inquirer':
+    specifier: ^9.0.7
+    version: 9.0.7
   '@types/node':
     specifier: ^20.11.27
     version: 20.11.27
@@ -321,6 +327,10 @@ packages:
       eslint: 8.57.0
       eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0)(eslint@8.57.0)
     dev: true
+
+  /@compass-aiden/helpers@0.1.1:
+    resolution: {integrity: sha512-16Bbuv+ZVXA7muClclwccjP388laMJ3h8JiRcV6wte2xp2O0dL77KkYF+K0CzQAZwJ1SnL22nLY0tH3SNLJpdQ==}
+    dev: false
 
   /@compass-aiden/telegram@2.1.0(axios@1.6.7):
     resolution: {integrity: sha512-ThOdsvzKvmzqn5YYkXGclKn2ElJub94dBgXQ8wydC9ow6Klfpl0oKpQTW1YhkVk5sKUzH9Ib2QMp7nG5/xQD6A==}
@@ -680,6 +690,13 @@ packages:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
     dev: true
 
+  /@types/inquirer@9.0.7:
+    resolution: {integrity: sha512-Q0zyBupO6NxGRZut/JdmqYKOnN95Eg5V8Csg3PGKkP+FnvsUZx1jAyK7fztIszxxMuoBA6E3KXWvdZVXIpx60g==}
+    dependencies:
+      '@types/through': 0.0.33
+      rxjs: 7.8.1
+    dev: true
+
   /@types/json-schema@7.0.15:
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
     dev: true
@@ -708,6 +725,12 @@ packages:
 
   /@types/semver@7.5.8:
     resolution: {integrity: sha512-I8EUhyrgfLrcTkzV3TSsGyl1tSuPrEDzr0yd5m90UgNxQkyDXULk3b6MlQqTCpZpNtWe1K0hzclnZkTcLBe2UQ==}
+    dev: true
+
+  /@types/through@0.0.33:
+    resolution: {integrity: sha512-HsJ+z3QuETzP3cswwtzt2vEIiHBk/dCcHGhbmG5X3ecnwFD/lPrMpliGXxSCg03L9AhrdwA4Oz/qfspkDW+xGQ==}
+    dependencies:
+      '@types/node': 20.11.27
     dev: true
 
   /@types/ua-parser-js@0.7.39:
@@ -3343,7 +3366,6 @@ packages:
     resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
     dependencies:
       tslib: 2.6.2
-    dev: false
 
   /safe-array-concat@1.1.2:
     resolution: {integrity: sha512-vj6RsCsWBCf19jIeHEfkRMw8DPiBb+DMXklQ/1SGDHOMlHdPUkZXFQ2YdplS23zESTijAcurb1aSgJA3AgMu1Q==}

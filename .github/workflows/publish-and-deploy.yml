@@ -2,8 +2,8 @@ name: Publish and deploy
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - v*
 
 permissions:
   contents: write

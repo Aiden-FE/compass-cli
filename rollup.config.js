@@ -7,6 +7,7 @@ import terser from '@rollup/plugin-terser';
 import cleanup from 'rollup-plugin-cleanup';
 import summary from 'rollup-plugin-summary';
 import { visualizer } from 'rollup-plugin-visualizer';
+import pkg from './package.json' assert { type: 'json' };
 
 const IS_PROD = !process.env.ROLLUP_WATCH;
 
@@ -71,7 +72,7 @@ export default [
   {
     input: 'src/main.ts',
     output: getOutput(),
-    external: getExternal(['axios', 'chalk', 'commander', 'inquirer', 'ora']),
+    external: getExternal(Object.keys(pkg.dependencies).filter((dep) => !['@compass-aiden/telegram'].includes(dep))),
     plugins: getPlugins({
       nodeResolve: { browser: false, exportConditions: ['node'] },
     }),
