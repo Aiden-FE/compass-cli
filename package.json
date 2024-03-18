@@ -1,7 +1,7 @@
 {
   "name": "@compass-aiden/cli",
   "type": "module",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Command line interfaces for Compass CLI",
   "main": "index.js",
   "bin": {
