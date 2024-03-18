@@ -14,6 +14,10 @@ concurrency:
   group: 'deploy'
   cancel-in-progress: false
 
+env:
+  CI: true
+  NODE_ENV: production
+
 jobs:
   lint:
     name: Publish and deploy
@@ -72,9 +76,6 @@ jobs:
 
       # 构建项目
       - name: Run build
-        env:
-          NODE_ENV: production
-          NODE_OPTIONS: --max_old_space_size=8192
         run: |
           pnpm build
 

@@ -5,6 +5,10 @@ on:
     branches:
       - '**'
 
+env:
+  CI: true
+  NODE_ENV: production
+
 jobs:
   lint:
     name: Lint code
