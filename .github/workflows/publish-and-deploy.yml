@@ -15,7 +15,6 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  CI: true
   NODE_ENV: production
 
 jobs:
