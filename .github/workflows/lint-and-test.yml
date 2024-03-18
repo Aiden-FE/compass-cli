@@ -5,9 +5,6 @@ on:
     branches:
       - '**'
 
-env:
-  NODE_ENV: production
-
 jobs:
   lint:
     name: Lint code

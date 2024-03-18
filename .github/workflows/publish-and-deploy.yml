@@ -14,9 +14,6 @@ concurrency:
   group: 'deploy'
   cancel-in-progress: false
 
-env:
-  NODE_ENV: production
-
 jobs:
   lint:
     name: Publish and deploy
@@ -57,7 +54,7 @@ jobs:
           SKIP_INSTALL_SIMPLE_GIT_HOOKS: 1
           SKIP_SIMPLE_GIT_HOOKS: 1
         run: |
-          pnpm install
+          pnpm install --frozen-lockfile
 
       # 同步版本及推送标签
       - name: Bump version and push tag
@@ -75,6 +72,8 @@ jobs:
 
       # 构建项目
       - name: Run build
+        env:
+          NODE_ENV: production
         run: |
           pnpm build
 
