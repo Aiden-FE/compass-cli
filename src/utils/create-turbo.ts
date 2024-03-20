@@ -1,5 +1,5 @@
-import inquirer from 'inquirer';
 import { join } from 'path';
+import inquirer from 'inquirer';
 import ora from 'ora';
 import chalk from 'chalk';
 import { createFile, createFolder, isFileOrFolderExists } from '@compass-aiden/helpers/cjs';
@@ -133,7 +133,7 @@ export default async function createTurbo(options?: { pkgManager?: PkgManager })
     },
   ]);
   const loading = ora();
-  loading.start(chalk.cyan('开始生成文件\n'));
+  loading.start(chalk.cyan('开始创建项目文件\n'));
   const runCwdPath = join(process.cwd(), projectPath);
   const execOptions = { stdio: 'inherit' as const, cwd: runCwdPath };
   if (isFileOrFolderExists(runCwdPath)) {
@@ -153,6 +153,5 @@ export default async function createTurbo(options?: { pkgManager?: PkgManager })
   createFolder('packages', execOptions);
   createFile('turbo.json', TURBO_JSON_FILE, execOptions);
   createFile('.gitignore', GITIGNORE_FILE, execOptions);
-  // 创建文件夹
   loading.succeed(chalk.green('创建完成'));
 }
