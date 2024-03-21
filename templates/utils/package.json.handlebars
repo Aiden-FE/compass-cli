@@ -62,18 +62,18 @@
     "build:doc-node": "typedoc src/node.ts --tsconfig tsconfig.node.json --out docs/node --name \"Compass helpers for node platforms\"",
     {{/if}}
     {{#if enabledGithooks}}
-      "prepare": "npx simple-git-hooks",
+    "prepare": "npx simple-git-hooks",
     {{/if}}
     {{#if enabledTypedoc}}
       {{#if enabledJest}}
-        "clean": "rimraf dist && rimraf types && rimraf stats.html && rimraf coverage && rimraf docs"
+    "clean": "rimraf dist && rimraf types && rimraf stats.html && rimraf coverage && rimraf docs"
       {{else}}
-        "clean": "rimraf dist && rimraf types && rimraf stats.html && rimraf docs"
+    "clean": "rimraf dist && rimraf types && rimraf stats.html && rimraf docs"
       {{/if}}
     {{else if enabledJest}}
-      "clean": "rimraf dist && rimraf types && rimraf stats.html && rimraf coverage"
+    "clean": "rimraf dist && rimraf types && rimraf stats.html && rimraf coverage"
     {{else}}
-      "clean": "rimraf dist && rimraf types && rimraf stats.html"
+    "clean": "rimraf dist && rimraf types && rimraf stats.html"
     {{/if}}
   },
   {{#if enabledGithooks}}
@@ -140,6 +140,7 @@
     {{#if enabledJest}}
     "ts-jest": "^29.1.2",
     {{/if}}
+    "tslib": "^2.6.2",
     {{#if enabledTypedoc}}
     "typedoc": "^0.25.12",
     {{/if}}

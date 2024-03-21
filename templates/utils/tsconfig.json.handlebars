@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "ESNext",
+    "lib": ["ESNext"],
+    "strict": true,
+    "sourceMap": true,
+    "declaration": true,
+    "declarationDir": "types",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "moduleResolution": "bundler",
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@": ["src"],
+      "@/*": ["src/*"]
+    },
+    "types": [],
+    "plugins": [{ "transform": "@zerollup/ts-transform-paths" }]
+  },
+  "references": [
+    { "path": "./tsconfig.web.json" },
+    {{#if enabledJest}}
+    { "path": "./tsconfig.node.json" },
+    { "path": "./tsconfig.test.json" }
+    {{else}}
+    { "path": "./tsconfig.node.json" }
+    {{/if}}
+  ]
+}
