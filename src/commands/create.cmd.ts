@@ -10,11 +10,22 @@ import {
   createVue,
   selectPkgManager,
   createUtils,
+  createAngular,
 } from '@/utils';
 import { PkgManager } from '@/interfaces';
 
 interface CommandOptions {
-  projectType?: 'turboMonorepo' | 'uniapp' | 'vue' | 'react' | 'electron' | 'nest' | 'next' | 'utils' | string;
+  projectType?:
+    | 'turboMonorepo'
+    | 'uniapp'
+    | 'vue'
+    | 'react'
+    | 'electron'
+    | 'nest'
+    | 'next'
+    | 'utils'
+    | 'angular'
+    | string;
   pkgManager?: PkgManager;
 }
 
@@ -31,7 +42,7 @@ export default (program: Command) => {
     .description('快速创建项目')
     .option(
       '-T, --project-type [projectType]',
-      '需要创建的项目类型, turboMonorepo,uniapp,vue,react,electron,nest,next,utils',
+      '需要创建的项目类型, turboMonorepo,uniapp,vue,react,electron,nest,next,utils,angular',
     )
     .option('-M, --pkg-manager [pkgManager]', '指定npm管理器. npm,yarn,pnpm')
     .action(async (options: CommandOptions) => {
@@ -50,6 +61,10 @@ export default (program: Command) => {
                 {
                   name: 'React 项目',
                   value: 'react',
+                },
+                {
+                  name: 'Angular 项目',
+                  value: 'angular',
                 },
                 {
                   name: 'Next SSR及SPA项目',
@@ -102,6 +117,9 @@ export default (program: Command) => {
       }
       if (projectType === 'utils') {
         await createUtils();
+      }
+      if (projectType === 'angular') {
+        await createAngular();
       }
     });
 };
