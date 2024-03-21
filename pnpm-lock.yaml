@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@compass-aiden/helpers':
-    specifier: ^0.1.1
-    version: 0.1.1
+    specifier: ^0.2.0
+    version: 0.2.0
   '@compass-aiden/telegram':
     specifier: ^2.1.0
     version: 2.1.0(axios@1.6.7)
@@ -337,8 +337,8 @@ packages:
       eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.2.0)(eslint@8.57.0)
     dev: true
 
-  /@compass-aiden/helpers@0.1.1:
-    resolution: {integrity: sha512-16Bbuv+ZVXA7muClclwccjP388laMJ3h8JiRcV6wte2xp2O0dL77KkYF+K0CzQAZwJ1SnL22nLY0tH3SNLJpdQ==}
+  /@compass-aiden/helpers@0.2.0:
+    resolution: {integrity: sha512-sn27xu6OvZdgEmaB+78gDqx6Zp/Q1m99ioIXNTIJO2X1MBHUUgvFU1+VlesOpXGQw3vYkQxgUvRa1xaqJjwgew==}
     dev: false
 
   /@compass-aiden/telegram@2.1.0(axios@1.6.7):

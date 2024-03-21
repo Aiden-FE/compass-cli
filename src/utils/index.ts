@@ -7,3 +7,4 @@ export { default as createElectron } from './create-electron';
 export { default as createNest } from './create-nest';
 export { default as createNext } from './create-next';
 export { default as createUtils } from './create-utils';
+export { default as batchCompileTemplates } from './batch-compile-templates';

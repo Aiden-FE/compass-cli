@@ -144,14 +144,14 @@ export default async function createTurbo(options?: { pkgManager?: PkgManager })
   await createFolder(projectPath, {});
   // 创建workspaces配置
   if (opt.pkgManager === 'pnpm') {
-    createFile('package.json', PACKAGE_FILE, execOptions);
-    createFile('pnpm-workspace.yaml', PNPM_WORKSPACES_FILE, execOptions);
+    await createFile('package.json', PACKAGE_FILE, execOptions);
+    await createFile('pnpm-workspace.yaml', PNPM_WORKSPACES_FILE, execOptions);
   } else {
-    createFile('package.json', WORKSPACE_PACKAGE_FILE, execOptions);
+    await createFile('package.json', WORKSPACE_PACKAGE_FILE, execOptions);
   }
-  createFolder('apps', execOptions);
-  createFolder('packages', execOptions);
-  createFile('turbo.json', TURBO_JSON_FILE, execOptions);
-  createFile('.gitignore', GITIGNORE_FILE, execOptions);
+  await createFolder('apps', execOptions);
+  await createFolder('packages', execOptions);
+  await createFile('turbo.json', TURBO_JSON_FILE, execOptions);
+  await createFile('.gitignore', GITIGNORE_FILE, execOptions);
   loading.succeed(chalk.green('创建完成'));
 }
