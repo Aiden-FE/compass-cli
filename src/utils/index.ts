@@ -13,8 +13,10 @@ export { default as createAngular } from './create-angular';
 // tools
 export { default as batchCompileTemplates } from './batch-compile-templates';
 export { default as Logger } from './logger';
+export * from './delete-files-sync';
 
 // plugin utils
 export * from './githooks.plugin';
 export * from './prettier.plugin';
-export * from './delete-files-sync';
+export * from './prettyquick.plugin';
+export * from './commitlint.plugin';

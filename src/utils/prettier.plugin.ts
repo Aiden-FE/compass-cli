@@ -70,10 +70,10 @@ export async function addPrettierPlugin(options?: { pkgManager?: PkgManager; cwd
   Logger.success(
     `Installed prettier${isHasEslint ? ' eslint-config-prettier eslint-plugin-prettier' : ''} at ${cwd || process.cwd()}`,
   );
-  Logger.success(`Set 'scripts.format' fields at ${cwd || process.cwd()}/package.json`);
+  Logger.success(`Set 'scripts.format' field at ${cwd || process.cwd()}/package.json`);
   Logger.success(`Created file at ${cwd || process.cwd()}/.prettierrc.json`);
   Logger.success(`Created file at ${cwd || process.cwd()}/.prettierignore`);
-  loading.succeed(chalk.green('成功安装 Prettier 插件'));
+  loading.succeed(chalk.green('成功安装 Prettier 插件,可通过以下命令主动执行格式化:\n\n\tnpm run format'));
 }
 
 export async function removePrettierPlugin(options?: { pkgManager?: PkgManager; cwd?: string }) {
@@ -97,7 +97,7 @@ export async function removePrettierPlugin(options?: { pkgManager?: PkgManager; 
   Logger.success(
     `Uninstalled prettier${isHasEslint ? ' eslint-config-prettier eslint-plugin-prettier' : ''} at ${cwd || process.cwd()}`,
   );
-  Logger.success(`Delete 'scripts.format' fields at ${cwd || process.cwd()}/package.json`);
+  Logger.success(`Delete 'scripts.format' field at ${cwd || process.cwd()}/package.json`);
   Logger.success(`Delete file at ${cwd || process.cwd()}/.prettierrc.json`);
   Logger.success(`Delete file at ${cwd || process.cwd()}/.prettierignore`);
   loading.succeed(chalk.green('成功移除 Prettier 插件'));
