@@ -1,3 +1,4 @@
+// create utils
 export { default as createTurbo } from './create-turbo';
 export { default as selectPkgManager } from './select-pkg-manager';
 export { default as createUniapp } from './create-uniapp';
@@ -7,5 +8,13 @@ export { default as createElectron } from './create-electron';
 export { default as createNest } from './create-nest';
 export { default as createNext } from './create-next';
 export { default as createUtils } from './create-utils';
-export { default as batchCompileTemplates } from './batch-compile-templates';
 export { default as createAngular } from './create-angular';
+
+// tools
+export { default as batchCompileTemplates } from './batch-compile-templates';
+export { default as Logger } from './logger';
+
+// plugin utils
+export * from './githooks.plugin';
+export * from './prettier.plugin';
+export * from './delete-files-sync';

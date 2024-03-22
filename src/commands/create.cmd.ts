@@ -42,7 +42,7 @@ export default (program: Command) => {
     .description('快速创建项目')
     .option(
       '-T, --project-type [projectType]',
-      '需要创建的项目类型, turboMonorepo,uniapp,vue,react,electron,nest,next,utils,angular',
+      '需要创建的项目类型\n\t\t\t\t\t- vue\tVue项目\n\t\t\t\t\t- react\tReact项目\n\t\t\t\t\t- angular\tAngular项目\n\t\t\t\t\t- next\tNext SSR项目\n\t\t\t\t\t- turboMonorepo\tTurbo monorepo项目\n\t\t\t\t\t- uniapp\tUniapp跨端项目\n\t\t\t\t\t- electron\tElectron桌面端项目\n\t\t\t\t\t- nest\tNest后端项目\n\t\t\t\t\t- utils\t实用程序工具库',
     )
     .option('-M, --pkg-manager [pkgManager]', '指定npm管理器. npm,yarn,pnpm')
     .action(async (options: CommandOptions) => {
@@ -67,11 +67,11 @@ export default (program: Command) => {
                   value: 'angular',
                 },
                 {
-                  name: 'Next SSR及SPA项目',
+                  name: 'Next SSR项目',
                   value: 'next',
                 },
                 {
-                  name: 'Turbo monorepo',
+                  name: 'Turbo monorepo项目',
                   value: 'turboMonorepo',
                 },
                 {
