@@ -13,6 +13,7 @@ export { default as createAngular } from './create-angular';
 // tools
 export { default as batchCompileTemplates } from './batch-compile-templates';
 export { default as Logger } from './logger';
+export { default as getLibraryVersionFromNpmRegisty } from './get-library-version-from-npm-registy';
 export * from './delete-files-sync';
 
 // plugin utils
@@ -20,3 +21,4 @@ export * from './githooks.plugin';
 export * from './prettier.plugin';
 export * from './prettyquick.plugin';
 export * from './commitlint.plugin';
+export * from './eslint.plugin';

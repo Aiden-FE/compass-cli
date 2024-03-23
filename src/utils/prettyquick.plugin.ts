@@ -74,7 +74,7 @@ export async function removePrettyQuickPlugin(options?: { pkgManager?: PkgManage
   execSync('npx simple-git-hooks', execOption);
 
   Logger.success(`Uninstalled pretty-quick at ${cwd || process.cwd()}`);
-  Logger.success(`Delete 'simple-git-hooks.pre-commit' field at ${cwd || process.cwd()}/package.json`);
+  Logger.success(`Deleted 'simple-git-hooks.pre-commit' field at ${cwd || process.cwd()}/package.json`);
   Logger.success(`Ran 'npx simple-git-hooks' to update hooks at ${cwd || process.cwd()}`);
   loading.succeed(chalk.green('成功移除 PrettyQuick 插件'));
 }

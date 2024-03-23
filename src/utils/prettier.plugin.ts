@@ -97,8 +97,8 @@ export async function removePrettierPlugin(options?: { pkgManager?: PkgManager; 
   Logger.success(
     `Uninstalled prettier${isHasEslint ? ' eslint-config-prettier eslint-plugin-prettier' : ''} at ${cwd || process.cwd()}`,
   );
-  Logger.success(`Delete 'scripts.format' field at ${cwd || process.cwd()}/package.json`);
-  Logger.success(`Delete file at ${cwd || process.cwd()}/.prettierrc.json`);
-  Logger.success(`Delete file at ${cwd || process.cwd()}/.prettierignore`);
+  Logger.success(`Deleted 'scripts.format' field at ${cwd || process.cwd()}/package.json`);
+  Logger.success(`Deleted file at ${cwd || process.cwd()}/.prettierrc.json`);
+  Logger.success(`Deleted file at ${cwd || process.cwd()}/.prettierignore`);
   loading.succeed(chalk.green('成功移除 Prettier 插件'));
 }

@@ -33,7 +33,7 @@ export async function removeGithooksPlugin(options?: { pkgManager?: PkgManager; 
   execSync('npm pkg delete simple-git-hooks', { stdio: 'inherit', cwd });
   execSync('npm pkg delete scripts.prepare', { stdio: 'inherit', cwd });
   Logger.success(`Uninstalled simple-git-hooks at ${cwd || process.cwd()}`);
-  Logger.success(`Delete 'simple-git-hooks' field at ${cwd || process.cwd()}/package.json`);
-  Logger.success(`Delete 'scripts.prepare' field at ${cwd || process.cwd()}/package.json`);
+  Logger.success(`Deleted 'simple-git-hooks' field at ${cwd || process.cwd()}/package.json`);
+  Logger.success(`Deleted 'scripts.prepare' field at ${cwd || process.cwd()}/package.json`);
   loading.succeed(chalk.green('SimpleGitHooks 插件移除完成'));
 }

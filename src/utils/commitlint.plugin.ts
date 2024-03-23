@@ -67,8 +67,8 @@ export async function removeCommitlintPlugin(options?: { pkgManager?: PkgManager
   execSync('npx simple-git-hooks', execOption);
 
   Logger.success(`Uninstalled @commitlint/cli @commitlint/config-conventional at ${cwd || process.cwd()}`);
-  Logger.success(`Delete 'simple-git-hooks.commit-msg' field at ${cwd || process.cwd()}/package.json`);
-  Logger.success(`Delete file at ${cwd || process.cwd()}/commitlint.config.js`);
+  Logger.success(`Deleted 'simple-git-hooks.commit-msg' field at ${cwd || process.cwd()}/package.json`);
+  Logger.success(`Deleted file at ${cwd || process.cwd()}/commitlint.config.js`);
   Logger.success(`Ran 'npx simple-git-hooks' to update hooks at ${cwd || process.cwd()}`);
 
   loading.succeed(chalk.green('成功卸载 Commitlint 插件'));
