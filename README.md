@@ -10,7 +10,23 @@
 
 `compass update` Cli更新检查
 
-`compass create` 创建项目, `compass create --help` 可以获得更多可选项说明, 支持创建的项目如下:
+`compass pull` 通过拉取模板来创建项目, `compass pull --help` 可以获得更多可选项说明,支持拉取的模板如下:
+
+|                                 Name                                  |       Description       |
+| :-------------------------------------------------------------------: | :---------------------: |
+| [utils](https://github.com/Aiden-FE/compass-template/tree/temp/utils) | Utils实用程序工具库模板 |
+
+`compass plugin` 向项目添加或删除插件, `compass plugin --help` 可以获得更多可选项说明,支持创建的插件如下:
+
+|    Name     |                                     Description                                     |
+| :---------: | :---------------------------------------------------------------------------------: |
+|  Githooks   |                 使用SimpleGitHooks基于githooks对项目添加自动化任务                  |
+|  Prettier   |                                 Prettier 代码格式化                                 |
+|   eslint    |                         Eslint 基于Airbnb规范对代码进行检查                         |
+| prettyquick | PrettyQuick 在Commit前仅对变更文件进行快速格式化,该插件依赖于githooks及prettier插件 |
+| commitlint  |                Commitlint 提交信息格式校验,该插件依赖于githooks插件                 |
+
+`compass create` 创建各官方标准项目, `compass create --help` 可以获得更多可选项说明, 支持创建的项目如下:
 
 |   Name   |    Description     |
 | :------: | :----------------: |
@@ -22,9 +38,6 @@
 |  Uniapp  |  Uniapp 跨端项目   |
 | Electron | Electron桌面端项目 |
 |   Nest   |    Nest后端项目    |
-|  Utils   |   实用程序工具库   |
-
-`compass plugin` 向项目添加或删除插件, `compass plugin --help` 可以获得更多可选项说明
 
 ## Contributes
 

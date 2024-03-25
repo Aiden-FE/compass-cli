@@ -13,6 +13,9 @@ export interface GithubReleaseInfo {
   prerelease: boolean;
   created_at: string;
   published_at: string;
+  type: string;
+  path: string;
+  download_url: string;
 }
 
 export interface RepositoryInfo {
@@ -25,3 +28,9 @@ export interface RepositoryInfo {
   /** 仓库子路径 */
   repoPath?: string;
 }
+
+export type ContentOfGithubRepo = {
+  type: 'dir' | 'file';
+  path: string;
+  download_url?: string;
+};

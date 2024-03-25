@@ -1,4 +1,9 @@
-import Telegram, { HttpTelegramResInterceptor, HttpTelegramErrorInterceptor } from '@compass-aiden/telegram';
+import { Logger } from '@/utils';
+import Telegram, {
+  HttpTelegramResInterceptor,
+  HttpTelegramErrorInterceptor,
+  HttpTelegramReqInterceptor,
+} from '@compass-aiden/telegram';
 
 const defaultResInterceptor: HttpTelegramResInterceptor = (data, res) => {
   if (res.status >= 200 && res.status < 300) {
@@ -11,12 +16,26 @@ const defaultErrorInterceptor: HttpTelegramErrorInterceptor = (error) => {
   throw new Error(`[${error.response?.status || 'Api Error'}]: ${error.message || error}`);
 };
 
-const Api = new Telegram()
+const defaultRequestInterceptor: HttpTelegramReqInterceptor = (req) => {
+  if (req.customMeta?.debug) {
+    Logger.info('Request debug:');
+    Logger.log(req);
+  }
+  return req;
+};
+
+const Api = new Telegram({
+  interceptors: {
+    response: defaultResInterceptor,
+    responseError: defaultErrorInterceptor,
+  },
+})
   .register('github', {
     baseURL: 'https://api.github.com',
     interceptors: {
       response: defaultResInterceptor,
       responseError: defaultErrorInterceptor,
+      request: defaultRequestInterceptor,
     },
   })
   .register('npm', {

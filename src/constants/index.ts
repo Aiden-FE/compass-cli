@@ -1,5 +1,6 @@
+export * from './templates';
+
 /** ESlint 插件 */
-// eslint-disable-next-line import/prefer-default-export
 export const ESLINT_PLUGINS = [
   {
     name: 'Next TS',

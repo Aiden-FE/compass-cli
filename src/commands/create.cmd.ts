@@ -9,23 +9,12 @@ import {
   createUniapp,
   createVue,
   selectPkgManager,
-  createUtils,
   createAngular,
 } from '@/utils';
 import { PkgManager } from '@/interfaces';
 
 interface CommandOptions {
-  projectType?:
-    | 'turboMonorepo'
-    | 'uniapp'
-    | 'vue'
-    | 'react'
-    | 'electron'
-    | 'nest'
-    | 'next'
-    | 'utils'
-    | 'angular'
-    | string;
+  projectType?: 'turboMonorepo' | 'uniapp' | 'vue' | 'react' | 'electron' | 'nest' | 'next' | 'angular' | string;
   pkgManager?: PkgManager;
 }
 
@@ -39,10 +28,10 @@ interface CommandOptions {
 export default (program: Command) => {
   program
     .command('create')
-    .description('快速创建项目')
+    .description('快速创建官方标准项目')
     .option(
       '-T, --project-type [projectType]',
-      '需要创建的项目类型\n\t\t\t\t\t- vue\tVue项目\n\t\t\t\t\t- react\tReact项目\n\t\t\t\t\t- angular\tAngular项目\n\t\t\t\t\t- next\tNext SSR项目\n\t\t\t\t\t- turboMonorepo\tTurbo monorepo项目\n\t\t\t\t\t- uniapp\tUniapp跨端项目\n\t\t\t\t\t- electron\tElectron桌面端项目\n\t\t\t\t\t- nest\tNest后端项目\n\t\t\t\t\t- utils\t实用程序工具库',
+      '需要创建的项目类型\n\t\t\t\t\t- vue\tVue项目\n\t\t\t\t\t- react\tReact项目\n\t\t\t\t\t- angular\tAngular项目\n\t\t\t\t\t- next\tNext SSR项目\n\t\t\t\t\t- turboMonorepo\tTurbo monorepo项目\n\t\t\t\t\t- uniapp\tUniapp跨端项目\n\t\t\t\t\t- electron\tElectron桌面端项目\n\t\t\t\t\t- nest\tNest后端项目',
     )
     .option('-M, --pkg-manager [pkgManager]', '指定npm管理器. npm,yarn,pnpm')
     .action(async (options: CommandOptions) => {
@@ -86,10 +75,6 @@ export default (program: Command) => {
                   name: 'Nest 后端项目',
                   value: 'nest',
                 },
-                {
-                  name: 'Utils 实用程序库',
-                  value: 'utils',
-                },
               ],
             },
           ]);
@@ -114,9 +99,6 @@ export default (program: Command) => {
       }
       if (projectType === 'next') {
         await createNext();
-      }
-      if (projectType === 'utils') {
-        await createUtils();
       }
       if (projectType === 'angular') {
         await createAngular();
