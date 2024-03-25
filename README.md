@@ -14,7 +14,7 @@
 
 |                                 Name                                  |       Description       |
 | :-------------------------------------------------------------------: | :---------------------: |
-| [utils](https://github.com/Aiden-FE/compass-template/tree/temp/utils) | Utils实用程序工具库模板 |
+| [Utils](https://github.com/Aiden-FE/compass-template/tree/temp/utils) | Utils实用程序工具库模板 |
 
 `compass plugin` 向项目添加或删除插件, `compass plugin --help` 可以获得更多可选项说明,支持创建的插件如下:
 
@@ -22,9 +22,9 @@
 | :---------: | :---------------------------------------------------------------------------------: |
 |  Githooks   |                 使用SimpleGitHooks基于githooks对项目添加自动化任务                  |
 |  Prettier   |                                 Prettier 代码格式化                                 |
-|   eslint    |                         Eslint 基于Airbnb规范对代码进行检查                         |
-| prettyquick | PrettyQuick 在Commit前仅对变更文件进行快速格式化,该插件依赖于githooks及prettier插件 |
-| commitlint  |                Commitlint 提交信息格式校验,该插件依赖于githooks插件                 |
+|   Eslint    |                         Eslint 基于Airbnb规范对代码进行检查                         |
+| Prettyquick | PrettyQuick 在Commit前仅对变更文件进行快速格式化,该插件依赖于githooks及prettier插件 |
+| Commitlint  |                Commitlint 提交信息格式校验,该插件依赖于githooks插件                 |
 
 `compass create` 创建各官方标准项目, `compass create --help` 可以获得更多可选项说明, 支持创建的项目如下:
 
@@ -54,11 +54,4 @@
 
 ### Publish library
 
-1. 变更package.json内的version字段
-2. 提交合并请求至master即可
-
-## Roadmap
-
-- [ ] `compass update` Compass CLI更新检查
-- [ ] `compass create <command> --options` 创建项目命令
-- [ ] `compass plugin <command> --options` 插件管理命令
+提交合并请求至master即可, publish,tag,release都将自动化处理
