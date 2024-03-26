@@ -12,9 +12,10 @@
 
 `compass pull` 通过拉取模板来创建项目, `compass pull --help` 可以获得更多可选项说明,支持拉取的模板如下:
 
-|                                 Name                                  |       Description       |
-| :-------------------------------------------------------------------: | :---------------------: |
-| [Utils](https://github.com/Aiden-FE/compass-template/tree/temp/utils) | Utils实用程序工具库模板 |
+|                                  Name                                   |       Description       |
+| :---------------------------------------------------------------------: | :---------------------: |
+|  [Utils](https://github.com/Aiden-FE/compass-template/tree/temp/utils)  | Utils实用程序工具库模板 |
+| [Styles](https://github.com/Aiden-FE/compass-template/tree/temp/styles) |  Styles基础样式库模板   |
 
 `compass plugin` 向项目添加或删除插件, `compass plugin --help` 可以获得更多可选项说明,支持创建的插件如下:
 

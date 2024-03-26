@@ -3,7 +3,7 @@ import { input, confirm } from '@inquirer/prompts';
 /* eslint-disable import/prefer-default-export */
 export const SELECT_TEMPLATE = [
   {
-    name: '自定义模板',
+    name: '自定义模板(暂未支持)',
     value: 'custom',
     getTemplateVars: async (options?: any) => options || {},
   },
@@ -19,7 +19,7 @@ export const SELECT_TEMPLATE = [
         projectDescription:
           options?.projectDescription ||
           (await input({
-            message: '请输入项目描述',
+            message: '[可选]请输入项目描述',
           })),
         enabledEslint:
           options?.enabledEslint ||
@@ -63,6 +63,40 @@ export const SELECT_TEMPLATE = [
       return {
         ...result,
         enabledGithooks: result.enabledPrettyQuick || result.enabledCommitlint || false,
+      };
+    },
+  },
+  {
+    name: 'Styles 基础样式库模板',
+    value: 'styles',
+    getTemplateVars: async (options?: any) => {
+      return {
+        projectName: await input({
+          message: '请输入项目名称',
+          default: options.projectName,
+        }),
+        projectDescription:
+          options?.projectDescription ||
+          (await input({
+            message: '[可选]请输入项目描述',
+          })),
+        domain:
+          options?.domain ||
+          (await input({
+            message: '请指定样式前缀字符,用来控制业务域影响,由长度12以内的小写字母和数字组成',
+            validate(value) {
+              if (!/^[a-z0-9]{1,12}$/.test(value)) {
+                return '业务域前缀应该由12位长度以内的小写字母和数字组成';
+              }
+              return true;
+            },
+          })),
+        enabledStylelint:
+          options?.enabledStylelint ||
+          (await confirm({
+            message: '是否启用 Stylelint 样式检查',
+            default: true,
+          })),
       };
     },
   },

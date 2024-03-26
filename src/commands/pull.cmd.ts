@@ -3,14 +3,17 @@ import { input, select } from '@inquirer/prompts';
 import { join, dirname } from 'path';
 import { isFileOrFolderExists } from '@compass-aiden/helpers/cjs';
 import { SELECT_TEMPLATE } from '@/constants';
-import { Logger, pullUtilsTemplate } from '@/utils';
+import { Logger, pullStylesTemplate, pullUtilsTemplate } from '@/utils';
 
 export default (program: Command) => {
   program
     .command('pull')
     .description('通过拉取模板来创建项目')
     .option('-N, --name [name]', '项目路径, 如: new-project, ./temp/new-project')
-    .option('-T, --template-type [tempType]', '需要拉取的模板类型\n\t\t\t\t\t- utils\tUtils实用程序工具库模板')
+    .option(
+      '-T, --template-type [tempType]',
+      '需要拉取的模板类型\n\t\t\t\t\t- utils\tUtils实用程序工具库模板\n\t\t\t\t\t- styles\tStyles基础样式库模板',
+    )
     .action(async (options) => {
       const tempType =
         options.templateType ||
@@ -40,6 +43,16 @@ export default (program: Command) => {
 
       if (tempType === 'utils') {
         await pullUtilsTemplate({
+          projectPath,
+          templateData: await tempConfig.getTemplateVars({
+            projectName,
+          }),
+        });
+        return;
+      }
+
+      if (tempType === 'styles') {
+        await pullStylesTemplate({
           projectPath,
           templateData: await tempConfig.getTemplateVars({
             projectName,
