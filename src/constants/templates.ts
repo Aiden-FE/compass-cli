@@ -3,9 +3,31 @@ import { input, confirm } from '@inquirer/prompts';
 /* eslint-disable import/prefer-default-export */
 export const SELECT_TEMPLATE = [
   {
-    name: '自定义模板(暂未支持)',
+    name: '自定义模板',
     value: 'custom',
-    getTemplateVars: async (options?: any) => options || {},
+    getTemplateVars: async (options?: any) => {
+      const tempData = await input({
+        message: '[可选]可在此处提供模板变量, 请输入可被JSON.parse处理的对象数据或JSON数据',
+        validate(value) {
+          try {
+            if (!value) {
+              return true;
+            }
+            const data = JSON.parse(value);
+            if (typeof data === 'object') {
+              return true;
+            }
+            return '请输入可被JSON.parse处理的对象数据或JSON数据';
+          } catch {
+            return '请输入可被JSON.parse处理的对象数据或JSON数据';
+          }
+        },
+      });
+      return {
+        ...options,
+        ...(tempData ? JSON.parse(tempData) : {}),
+      };
+    },
   },
   {
     name: 'Utils 实用程序工具库模板',
