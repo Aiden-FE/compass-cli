@@ -6,8 +6,8 @@ import chalk from 'chalk';
 import { createFileSync, isFileOrFolderExists } from '@compass-aiden/helpers/cjs';
 import { ESLINT_PLUGINS } from '@/constants';
 import { PkgManager } from '@/interfaces';
-import Logger from './logger';
-import { deleteFilesSync } from './delete-files-sync';
+import Logger from '../logger';
+import { deleteFilesSync } from '../delete-files-sync';
 
 /**
  * @description 添加eslint插件

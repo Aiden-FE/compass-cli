@@ -1,17 +1,17 @@
 import chalk from 'chalk';
 import { join } from 'path';
-import Logger from './logger';
-import downloadRepoFromGithub from './download-repo-from-github';
-import getFilePathsInFolder from './get-file-paths-in-folder';
-import batchCompileTemplates from './batch-compile-templates';
-import deleteFoldersSync from './delete-folder-sync';
+import Logger from '../logger';
+import downloadRepoFromGithub from '../download-repo-from-github';
+import getFilePathsInFolder from '../get-file-paths-in-folder';
+import batchCompileTemplates from '../batch-compile-templates';
+import deleteFoldersSync from '../delete-folder-sync';
 
-interface UtilsTempProps {
+interface StylesTempProps {
   projectPath?: string;
   templateData?: Record<string, string | number | boolean>;
 }
 
-export default async function pullUtilsTemplate(options?: UtilsTempProps) {
+export default async function pullStylesTemplate(options?: StylesTempProps) {
   const { projectPath, templateData } = {
     templateData: {},
     projectPath: './new-project',
@@ -24,29 +24,14 @@ export default async function pullUtilsTemplate(options?: UtilsTempProps) {
     {
       author: 'Aiden-FE',
       repository: 'compass-template',
-      branch: 'temp/utils',
+      branch: 'temp/styles',
     },
     tempFolderPath,
   );
   const tempFiles = getFilePathsInFolder(tempFolderPath);
   const ignoreFiles: string[] = [];
-  if (!templateData.enabledJest) {
-    ignoreFiles.push('tsconfig.test.json', 'jest.config.cjs');
-  }
-  if (!templateData.enabledCommitlint) {
-    ignoreFiles.push('commitlint.config.js');
-  }
-  if (!templateData.enabledPrettier) {
-    ignoreFiles.push('.prettierrc.json', '.prettierignore');
-  }
-  if (!templateData.enabledEslint) {
-    ignoreFiles.push('.eslintrc.cjs.handlebars');
-  }
-  if (!templateData.enabledGithubActions) {
-    ignoreFiles.push(
-      '.github/workflows/lint-and-test.yml.handlebars',
-      '.github/workflows/publish-and-deploy.yml.handlebars',
-    );
+  if (!templateData.enabledStylelint) {
+    ignoreFiles.push('.stylelintrc.json');
   }
   await batchCompileTemplates(
     tempFiles

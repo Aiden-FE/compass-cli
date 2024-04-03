@@ -4,8 +4,8 @@ import { join } from 'path';
 import chalk from 'chalk';
 import { createFileSync, isFileOrFolderExists } from '@compass-aiden/helpers/cjs';
 import { PkgManager } from '@/interfaces';
-import Logger from './logger';
-import { deleteFilesSync } from './delete-files-sync';
+import Logger from '../logger';
+import { deleteFilesSync } from '../delete-files-sync';
 
 const PRETTIERRC_DATA = `{
   "printWidth": 120,

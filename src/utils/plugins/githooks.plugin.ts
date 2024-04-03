@@ -1,7 +1,7 @@
 import { execSync } from 'child_process';
 import chalk from 'chalk';
 import { PkgManager } from '@/interfaces';
-import Logger from './logger';
+import Logger from '../logger';
 
 export async function addGithooksPlugin(options?: { pkgManager?: PkgManager; cwd?: string }) {
   const { pkgManager, cwd } = {

@@ -4,9 +4,9 @@ import chalk from 'chalk';
 import { confirm } from '@inquirer/prompts';
 import { createFileSync } from '@compass-aiden/helpers/cjs';
 import { PkgManager } from '@/interfaces';
-import Logger from './logger';
+import Logger from '../logger';
 import { addGithooksPlugin } from './githooks.plugin';
-import { deleteFilesSync } from './delete-files-sync';
+import { deleteFilesSync } from '../delete-files-sync';
 
 const COMMITLINT_CONFIG_FILE = `export default {
   extends: ['@commitlint/config-conventional'],

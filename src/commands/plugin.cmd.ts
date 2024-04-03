@@ -7,11 +7,13 @@ import {
   addCommitlintPlugin,
   addEslintPlugin,
   addGithooksPlugin,
+  addJestPlugin,
   addPrettierPlugin,
   addPrettyQuickPlugin,
   removeCommitlintPlugin,
   removeEslintPlugin,
   removeGithooksPlugin,
+  removeJestPlugin,
   removePrettierPlugin,
   removePrettyQuickPlugin,
 } from '@/utils';
@@ -32,7 +34,7 @@ export default (program: Command) => {
     .option('-T, --type [type]', '操作类型\n\t\t\t- add\t为项目添加插件\n\t\t\t- remove\t为项目移除插件')
     .option(
       '-N, --name [name]',
-      '插件名称\n\t\t\t- githooks\t使用SimpleGitHooks基于githooks对项目添加自动化任务\n\t\t\t- prettier\tPrettier 代码格式化\n\t\t\t- prettyquick\tPrettyQuick 在Commit前仅对变更文件进行快速格式化,该插件依赖于githooks及prettier插件\n\t\t\t- commitlint\tCommitlint 提交信息格式校验,该插件依赖于githooks插件\n\t\t\t- eslint\tEslint 基于Airbnb规范对代码进行检查',
+      '插件名称\n\t\t\t- githooks\t使用SimpleGitHooks基于githooks对项目添加自动化任务\n\t\t\t- prettier\tPrettier 代码格式化\n\t\t\t- prettyquick\tPrettyQuick 在Commit前仅对变更文件进行快速格式化,该插件依赖于githooks及prettier插件\n\t\t\t- commitlint\tCommitlint 提交信息格式校验,该插件依赖于githooks插件\n\t\t\t- eslint\tEslint 基于Airbnb规范对代码进行检查\n\t\t\t- jest\tJest 单元测试',
     )
     .option('-P, --path [path]', '项目路径,默认为当前路径')
     .action(async ({ name: inputName, type: inputType, path: inputPath }) => {
@@ -81,15 +83,19 @@ export default (program: Command) => {
                   value: 'prettier',
                 },
                 {
-                  name: '使用SimpleGitHooks基于githooks对项目添加自动化任务',
+                  name: 'Jest 单元测试',
+                  value: 'jest',
+                },
+                {
+                  name: '使用SimpleGitHooks基于git hooks对项目添加自动化任务',
                   value: 'githooks',
                 },
                 {
-                  name: 'Commitlint 提交信息格式校验,该插件依赖于githooks插件',
+                  name: 'Commitlint 提交信息格式校验,该插件依赖于git hooks插件',
                   value: 'commitlint',
                 },
                 {
-                  name: 'PrettyQuick 在Commit前仅对变更文件进行快速格式化,该插件依赖于githooks及prettier插件',
+                  name: 'PrettyQuick 在Commit前仅对变更文件进行快速格式化,该插件依赖于git hooks及prettier插件',
                   value: 'prettyquick',
                 },
               ],
@@ -141,6 +147,16 @@ export default (program: Command) => {
         const action = {
           add: addEslintPlugin,
           remove: removeEslintPlugin,
+        };
+        const pkgManager: PkgManager = scanDependencyManager({ cwd: basePath });
+        await action[type]({ pkgManager, cwd: basePath });
+        return;
+      }
+
+      if (name === 'jest') {
+        const action = {
+          add: addJestPlugin,
+          remove: removeJestPlugin,
         };
         const pkgManager: PkgManager = scanDependencyManager({ cwd: basePath });
         await action[type]({ pkgManager, cwd: basePath });

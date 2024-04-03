@@ -2,7 +2,7 @@ import { execSync } from 'child_process';
 import chalk from 'chalk';
 import { confirm } from '@inquirer/prompts';
 import { PkgManager } from '@/interfaces';
-import Logger from './logger';
+import Logger from '../logger';
 import { addGithooksPlugin } from './githooks.plugin';
 import { addPrettierPlugin } from './prettier.plugin';
 
