@@ -66,7 +66,7 @@ export async function addPrettierPlugin(options?: { pkgManager?: PkgManager; cwd
   execSync('npm pkg set scripts.format="prettier --write src"', execOption);
   createFileSync('.prettierrc.json', PRETTIERRC_DATA, { cwd });
   createFileSync('.prettierignore', PRETTIERIGNORE_DATA, { cwd });
-
+  // FIXME: isHasEslint存在需要找到.eslintrc.json文件写入extends配置,未写入则需要提示用户主动写入
   Logger.success(
     `Installed prettier${isHasEslint ? ' eslint-config-prettier eslint-plugin-prettier' : ''} at ${cwd || process.cwd()}`,
   );

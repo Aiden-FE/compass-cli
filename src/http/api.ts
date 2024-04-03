@@ -1,9 +1,9 @@
-import { Logger } from '@/utils';
 import Telegram, {
   HttpTelegramResInterceptor,
   HttpTelegramErrorInterceptor,
   HttpTelegramReqInterceptor,
 } from '@compass-aiden/telegram';
+import { Logger } from '@/utils';
 
 const defaultResInterceptor: HttpTelegramResInterceptor = (data, res) => {
   if (res.status >= 200 && res.status < 300) {

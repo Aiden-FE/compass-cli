@@ -89,6 +89,34 @@ export const SELECT_TEMPLATE = [
     },
   },
   {
+    name: 'Commandline 命令行模板',
+    value: 'cli',
+    getTemplateVars: async (options?: any) => {
+      return {
+        projectName: await input({
+          message: '请输入项目名称',
+          default: options.projectName,
+        }),
+        projectDescription:
+          options?.projectDescription ||
+          (await input({
+            message: '[可选]请输入项目描述',
+          })),
+        commandName:
+          options?.commandName ||
+          (await input({
+            message: '请指定终端命令的字符,由长度12以内的小写字母组成,建议简洁易记',
+            validate(value) {
+              if (!/^[a-z]{1,12}$/.test(value)) {
+                return '命令字符由长度12以内的小写字母组成,建议简洁易记';
+              }
+              return true;
+            },
+          })),
+      };
+    },
+  },
+  {
     name: 'Styles 基础样式库模板',
     value: 'styles',
     getTemplateVars: async (options?: any) => {

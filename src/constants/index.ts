@@ -21,7 +21,7 @@ export const ESLINT_PLUGINS = [
     name: 'Vue TS',
     value: '@compass-aiden/eslint-config/vue',
     deps: ['eslint-plugin-vue', '@typescript-eslint/parser', '@vue/eslint-config-airbnb-with-typescript'],
-    lint: 'eslint . --fix --ext .js,.jsx,.ts,.tsx,.vue',
+    lint: 'eslint src --fix --ext .js,.jsx,.ts,.tsx,.vue',
   },
   {
     name: 'React TS',
@@ -36,7 +36,7 @@ export const ESLINT_PLUGINS = [
       '@typescript-eslint/parser',
       'eslint-plugin-react-refresh',
     ],
-    lint: 'eslint . --fix --ext .js,.jsx,.ts,.tsx',
+    lint: 'eslint src --fix --ext .js,.jsx,.ts,.tsx',
   },
   {
     name: 'Typescript',
@@ -47,7 +47,7 @@ export const ESLINT_PLUGINS = [
       '@typescript-eslint/parser',
       '@typescript-eslint/eslint-plugin',
     ],
-    lint: 'eslint . --fix --ext .js,.jsx,.ts,.tsx',
+    lint: 'eslint src --fix --ext .js,.jsx,.ts,.tsx',
   },
   {
     name: 'Nest TS',
@@ -58,18 +58,18 @@ export const ESLINT_PLUGINS = [
       '@typescript-eslint/eslint-plugin',
       '@typescript-eslint/parser',
     ],
-    lint: 'eslint . --fix --ext .js,.jsx,.ts,.tsx',
+    lint: 'eslint src --fix --ext .js,.jsx,.ts,.tsx',
   },
   {
     name: 'Vue2 TS',
     value: '@compass-aiden/eslint-config/vue2',
     deps: ['eslint-plugin-vue', '@vue/eslint-config-airbnb-with-typescript'],
-    lint: 'eslint . --fix --ext .js,.jsx,.ts,.tsx,.vue',
+    lint: 'eslint src --fix --ext .js,.jsx,.ts,.tsx,.vue',
   },
   {
     name: 'Javascript',
     value: '@compass-aiden/eslint-config/js',
     deps: ['eslint-config-airbnb-base'],
-    lint: 'eslint . --fix --ext .js,.jsx,.ts,.tsx',
+    lint: 'eslint src --fix --ext .js,.jsx,.ts,.tsx',
   },
 ];
