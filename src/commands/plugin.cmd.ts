@@ -73,16 +73,16 @@ export default (program: Command) => {
               message: `请选择您要${type === 'add' ? '添加' : '删除'}的插件`,
               choices: [
                 {
-                  name: '使用SimpleGitHooks基于githooks对项目添加自动化任务',
-                  value: 'githooks',
-                },
-                {
                   name: 'Eslint 基于Airbnb规范对代码进行检查',
                   value: 'eslint',
                 },
                 {
                   name: 'Prettier 代码格式化',
                   value: 'prettier',
+                },
+                {
+                  name: '使用SimpleGitHooks基于githooks对项目添加自动化任务',
+                  value: 'githooks',
                 },
                 {
                   name: 'Commitlint 提交信息格式校验,该插件依赖于githooks插件',

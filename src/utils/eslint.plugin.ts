@@ -68,7 +68,7 @@ export async function addEslintPlugin(options?: { pkgManager?: PkgManager; cwd?:
     `Installed @compass-aiden/eslint-config eslint eslint-plugin-import ${pluginConfig.deps.join(' ')} at ${cwd || process.cwd()}`,
   );
   Logger.success(`Set 'scripts.lint' field at ${cwd || process.cwd()}/package.json`);
-  loading.succeed(chalk.green('成功安装 Eslint 插件, 通过"npm run lint"可以主动校验'));
+  loading.succeed(chalk.green('成功安装 Eslint 插件, 可通过以下命令主动校验\n\n\tnpm run lint'));
 }
 
 export async function removeEslintPlugin(options?: { pkgManager?: PkgManager; cwd?: string }) {
