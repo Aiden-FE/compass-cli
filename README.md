@@ -21,13 +21,14 @@
 
 `compass plugin` 向项目添加或删除插件, `compass plugin --help` 可以获得更多可选项说明,支持创建的插件如下:
 
-|    Name     |                                     Description                                     |
-| :---------: | :---------------------------------------------------------------------------------: |
-|  Githooks   |                 使用SimpleGitHooks基于githooks对项目添加自动化任务                  |
-|  Prettier   |                                 Prettier 代码格式化                                 |
-|   Eslint    |                         Eslint 基于Airbnb规范对代码进行检查                         |
-| Prettyquick | PrettyQuick 在Commit前仅对变更文件进行快速格式化,该插件依赖于githooks及prettier插件 |
-| Commitlint  |                Commitlint 提交信息格式校验,该插件依赖于githooks插件                 |
+|     Name      |                                     Description                                     |
+| :-----------: | :---------------------------------------------------------------------------------: |
+|    Eslint     |                         Eslint 基于Airbnb规范对代码进行检查                         |
+|   Prettier    |                                 Prettier 代码格式化                                 |
+|   Githooks    |                 使用SimpleGitHooks基于githooks对项目添加自动化任务                  |
+|  Commitlint   |                Commitlint 提交信息格式校验,该插件依赖于githooks插件                 |
+|  Prettyquick  | PrettyQuick 在Commit前仅对变更文件进行快速格式化,该插件依赖于githooks及prettier插件 |
+| githubactions |                      Github actions 基于github actions添加CICD                      |
 
 `compass create` 创建各官方标准项目, `compass create --help` 可以获得更多可选项说明, 支持创建的项目如下:
 
