@@ -1,6 +1,12 @@
 import { input, confirm } from '@inquirer/prompts';
 
-/* eslint-disable import/prefer-default-export */
+export const STYLELINT_PLUGINS = [
+  { name: 'Vue', value: 'vue' },
+  { name: 'Scss', value: 'scss' },
+  { name: 'Less', value: 'less' },
+  { name: 'Stylus', value: 'stylus' },
+];
+
 export const SELECT_TEMPLATE = [
   {
     name: '自定义模板',

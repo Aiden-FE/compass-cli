@@ -267,7 +267,7 @@ git commit -m "chore: published tag $\{{steps.tag_version.outputs.new_tag}}"`,
     yamlData.permissions.contents = 'write';
   }
   const loading = Logger.createLoading();
-  loading.start(chalk.cyan('开始安装 Github actions 插件'));
+  loading.start(chalk.cyan('开始创建 Github actions 工作流'));
   let yamlStrData = YAML.stringify(yamlData);
   if (isUpdateNpmVersion) {
     yamlStrData = yamlStrData.replace(/chore: published tag\n\s+(.*?)/g, 'chore: published tag $1');

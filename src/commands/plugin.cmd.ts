@@ -11,12 +11,14 @@ import {
   addJestPlugin,
   addPrettierPlugin,
   addPrettyQuickPlugin,
+  addStylelintPlugin,
   removeCommitlintPlugin,
   removeEslintPlugin,
   removeGithooksPlugin,
   removeJestPlugin,
   removePrettierPlugin,
   removePrettyQuickPlugin,
+  removeStylelintPlugin,
 } from '@/utils';
 import { PkgManager } from '@/interfaces';
 
@@ -32,10 +34,23 @@ export default (program: Command) => {
   program
     .command('plugin')
     .description('项目插件管理')
-    .option('-T, --type [type]', '操作类型\n\t\t\t- add\t为项目添加插件\n\t\t\t- remove\t为项目移除插件')
+    .option(
+      '-T, --type [type]',
+      `操作类型
+\t\t\t- add\t\t为项目添加插件
+\t\t\t- remove\t为项目移除插件`,
+    )
     .option(
       '-N, --name [name]',
-      '插件名称\n\t\t\t- githooks\t使用SimpleGitHooks基于githooks对项目添加自动化任务\n\t\t\t- prettier\tPrettier 代码格式化\n\t\t\t- prettyquick\tPrettyQuick 在Commit前仅对变更文件进行快速格式化,该插件依赖于githooks及prettier插件\n\t\t\t- commitlint\tCommitlint 提交信息格式校验,该插件依赖于githooks插件\n\t\t\t- eslint\tEslint 基于Airbnb规范对代码进行检查\n\t\t\t- jest\tJest 单元测试\n\t\t\t- githubactions\tGithub actions 基于github actions添加CICD',
+      `插件名称
+\t\t\t- eslint\tEslint 基于Airbnb规范对代码进行检查
+\t\t\t- prettier\tPrettier 代码格式化
+\t\t\t- jest\t\tJest 单元测试
+\t\t\t- stylelint\tStylelint 样式检查
+\t\t\t- githubactions\tGithub actions 基于github actions添加CICD
+\t\t\t- githooks\t使用SimpleGitHooks基于githooks对项目添加自动化任务
+\t\t\t- commitlint\tCommitlint 提交信息格式校验,该插件依赖于githooks插件
+\t\t\t- prettyquick\tPrettyQuick 在Commit前仅对变更文件进行快速格式化,该插件依赖于githooks及prettier插件`,
     )
     .option('-P, --path [path]', '项目路径,默认为当前路径')
     .action(async ({ name: inputName, type: inputType, path: inputPath }) => {
@@ -88,6 +103,14 @@ export default (program: Command) => {
                   value: 'jest',
                 },
                 {
+                  name: 'Stylelint 样式检查',
+                  value: 'stylelint',
+                },
+                type === 'add' && {
+                  name: 'Github actions 基于github actions添加CICD',
+                  value: 'githubactions',
+                },
+                {
                   name: '使用SimpleGitHooks基于git hooks对项目添加自动化任务',
                   value: 'githooks',
                 },
@@ -98,10 +121,6 @@ export default (program: Command) => {
                 {
                   name: 'PrettyQuick 在Commit前仅对变更文件进行快速格式化,该插件依赖于git hooks及prettier插件',
                   value: 'prettyquick',
-                },
-                type === 'add' && {
-                  name: 'Github actions 基于github actions添加CICD',
-                  value: 'githubactions',
                 },
               ].filter((item) => !!item),
             },
@@ -174,6 +193,16 @@ export default (program: Command) => {
         };
         const pkgManager: PkgManager = scanDependencyManager({ cwd: basePath });
         await action.add({ pkgManager, cwd: basePath });
+        return;
+      }
+
+      if (name === 'stylelint') {
+        const action = {
+          add: addStylelintPlugin,
+          remove: removeStylelintPlugin,
+        };
+        const pkgManager: PkgManager = scanDependencyManager({ cwd: basePath });
+        await action[type]({ pkgManager, cwd: basePath });
         return;
       }
 

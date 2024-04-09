@@ -23,12 +23,14 @@
 
 |     Name      |                                     Description                                     |
 | :-----------: | :---------------------------------------------------------------------------------: |
-|    Eslint     |                         Eslint 基于Airbnb规范对代码进行检查                         |
-|   Prettier    |                                 Prettier 代码格式化                                 |
-|   Githooks    |                 使用SimpleGitHooks基于githooks对项目添加自动化任务                  |
-|  Commitlint   |                Commitlint 提交信息格式校验,该插件依赖于githooks插件                 |
-|  Prettyquick  | PrettyQuick 在Commit前仅对变更文件进行快速格式化,该插件依赖于githooks及prettier插件 |
+|    eslint     |                         Eslint 基于Airbnb规范对代码进行检查                         |
+|   prettier    |                                 Prettier 代码格式化                                 |
+|     jest      |                                    Jest 单元测试                                    |
+|   stylelint   |                                 Stylelint 样式检查                                  |
 | githubactions |                      Github actions 基于github actions添加CICD                      |
+|   githooks    |                 使用SimpleGitHooks基于githooks对项目添加自动化任务                  |
+|  commitlint   |                Commitlint 提交信息格式校验,该插件依赖于githooks插件                 |
+|  prettyquick  | PrettyQuick 在Commit前仅对变更文件进行快速格式化,该插件依赖于githooks及prettier插件 |
 
 `compass create` 创建各官方标准项目, `compass create --help` 可以获得更多可选项说明, 支持创建的项目如下:
 
