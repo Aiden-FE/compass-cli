@@ -51,8 +51,8 @@ export default (program: Command) => {
                 message: '请选择对应工具更新',
                 choices: [
                   { name: 'npm', value: 'npm' },
-                  { name: 'yarn', value: 'yarn' },
                   { name: 'pnpm', value: 'pnpm' },
+                  { name: 'yarn', value: 'yarn' },
                 ],
               },
             ])
@@ -64,7 +64,7 @@ export default (program: Command) => {
                   execSync(`yarn global add ${name}`, { stdio: 'inherit' });
                   break;
                 case 'pnpm':
-                  execSync(`pnpm add ${name} --global`, { stdio: 'inherit' });
+                  execSync(`pnpm up ${name} --latest --global`, { stdio: 'inherit' });
                   break;
                 case 'npm':
                 default:

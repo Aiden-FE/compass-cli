@@ -5,7 +5,7 @@
   "description": "Command line interfaces for Compass CLI",
   "main": "index.js",
   "bin": {
-    "compass": "index.js"
+    "compass": "compass.js"
   },
   "scripts": {
     "dev": "rollup -w -c rollup.config.js",
@@ -23,7 +23,7 @@
     "dist",
     "types",
     "templates",
-    "index.js"
+    "compass.js"
   ],
   "keywords": [
     "commander",
@@ -73,7 +73,7 @@
     "typescript": "^5.4.2"
   },
   "dependencies": {
-    "@compass-aiden/helpers": "^0.2.0",
+    "@compass-aiden/helpers": "^0.3.1",
     "@compass-aiden/telegram": "^2.3.1",
     "@inquirer/prompts": "^4.3.0",
     "acorn": "^8.11.3",
