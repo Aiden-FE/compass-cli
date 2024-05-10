@@ -10,4 +10,5 @@ export { default as getLibraryVersionFromNpmRegisty } from './get-library-versio
 export { default as downloadRepoFromGithub } from './download-repo-from-github';
 export { default as getFilePathsInFolder } from './get-file-paths-in-folder';
 export { default as deleteFoldersSync } from './delete-folder-sync';
+export { default as getASTTreeOfFile } from './get-ast-tree-of-file';
 export * from './delete-files-sync';

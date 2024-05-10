@@ -15,7 +15,7 @@ export default () => {
     .usage('<command> [option]')
     .on('--help', () => {
       // eslint-disable-next-line no-console
-      console.log(`\r\n${figlet.textSync('Compass CLI')}`);
+      console.log(`\r\n${chalk.cyan(figlet.textSync('Compass CLI'))}`);
       // 新增说明信息
       // eslint-disable-next-line no-console
       console.log(`\r\nRun ${chalk.cyan(`compass <command> --help`)} show details\r\n`);

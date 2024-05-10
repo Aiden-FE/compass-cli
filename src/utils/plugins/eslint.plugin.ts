@@ -56,6 +56,16 @@ export async function addEslintPlugin(options?: { pkgManager?: PkgManager; cwd?:
     eslintFileData.extends.push(answer);
     writeFileSync(eslintFilePath, JSON.stringify(eslintFileData, null, 2), 'utf-8');
   }
+
+  // Vite 相关配置
+  let hasViteConfig = false;
+  if (
+    isFileOrFolderExists(join(cwd || process.cwd(), 'vite.config.ts')) ||
+    isFileOrFolderExists(join(cwd || process.cwd(), 'vite.config.js'))
+  ) {
+    hasViteConfig = true;
+  }
+
   // 在package.json内写入lint命令
   execSync(`npm pkg set scripts.lint="${pluginConfig.lint}"`, execOption);
   execSync(
@@ -63,6 +73,23 @@ export async function addEslintPlugin(options?: { pkgManager?: PkgManager; cwd?:
     execOption,
   );
 
+  if (hasViteConfig) {
+    Logger.info(`在Vite项目中推荐使用vite-plugin-checker插件,示例如下:
+
+    import checker from 'vite-plugin-checker';
+
+    export default defineConfig({
+      plugins: [
+        // ......其他插件
+        checker({
+          eslint: {
+            lintCommand: 'eslint "./src/**/*.{ts,tsx,vue,js,jsx,cjs,mjs}" --fix',
+          },
+        }),
+      ],
+    });
+    `);
+  }
   Logger.success(`${isCreateFile ? 'Created' : 'Updated'} file at ${eslintFilePath}`);
   Logger.success(
     `Installed @compass-aiden/eslint-config eslint eslint-plugin-import ${pluginConfig.deps.join(' ')} at ${cwd || process.cwd()}`,
