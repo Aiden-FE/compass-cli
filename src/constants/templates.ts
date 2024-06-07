@@ -36,6 +36,24 @@ export const SELECT_TEMPLATE = [
     },
   },
   {
+    name: 'Nextjs SSR项目模板',
+    value: 'nextjs',
+    getTemplateVars: async (options?: any) => {
+      const result = {
+        projectName: await input({
+          message: '请输入项目名称',
+          default: options.projectName,
+        }),
+        projectDescription:
+          options?.projectDescription ||
+          (await input({
+            message: '[可选]请输入项目描述',
+          })),
+      };
+      return result;
+    },
+  },
+  {
     name: 'Utils 实用程序工具库模板',
     value: 'utils',
     getTemplateVars: async (options?: any) => {

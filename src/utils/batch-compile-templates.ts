@@ -11,12 +11,17 @@ import { createFileSync, createFolder, isFileOrFolderExists } from '@compass-aid
 export default async function batchCompileTemplates(temps: [string, string][], tempData: Record<string, any>) {
   const tasks = temps.map(async (temp) => {
     if (temp && temp[0] && temp[1]) {
-      const compileTemp = handlebars.compile(readFileSync(temp[0], 'utf-8'));
+      let fileData = '';
+      if (temp[0].endsWith('.handlebars')) {
+        fileData = handlebars.compile(readFileSync(temp[0], 'utf-8'))(tempData);
+      } else {
+        fileData = readFileSync(temp[0], 'utf-8');
+      }
       const targetDirPath = dirname(temp[1]);
       if (!isFileOrFolderExists(targetDirPath)) {
         await createFolder(targetDirPath);
       }
-      createFileSync(temp[1], compileTemp(tempData));
+      createFileSync(temp[1], fileData);
     }
   });
   await Promise.all(tasks);
