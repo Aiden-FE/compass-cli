@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 import chalk from 'chalk';
 import { join, dirname } from 'path';
 import { confirm, input, select } from '@inquirer/prompts';
@@ -183,7 +184,7 @@ git commit -m "chore: published tag $\{{steps.tag_version.outputs.new_tag}}"`,
     }
   }
   const runCustomCmd = await input({
-    message: '[可选] 是否运行自定义命令,为空则不运行,多个命令请以 ; 换行',
+    message: '[可选] 是否运行自定义命令(如构建项目等),为空则不运行,多个命令请以 ; 换行',
   });
   if (runCustomCmd) {
     yamlData.jobs.pipeline.steps.push({
@@ -266,9 +267,29 @@ git commit -m "chore: published tag $\{{steps.tag_version.outputs.new_tag}}"`,
     yamlData.permissions.pages = 'write';
     yamlData.permissions.contents = 'write';
   }
+  const isPublishImage = await confirm({
+    message: '是否需要构建并发布Docker镜像',
+    default: false,
+  });
+  if (isPublishImage) {
+    const filesPath = await input({
+      message: '请输入Dockerfile文件路径',
+      default: '.',
+    });
+    yamlData.jobs.pipeline.steps.push({
+      name: 'Build and push to docker',
+      uses: 'docker/build-push-action@v4',
+      with: {
+        context: filesPath,
+        push: true,
+        tags: `${isPushTag ? '${{ vars.DOCKERHUB_USERNAME }}/${{ vars.DOCKERHUB_IMAGE_NAME }}:${{ steps.tag_version.outputs.new_tag }}' : ''}
+$\{{ vars.DOCKERHUB_USERNAME }}/$\{{ vars.DOCKERHUB_IMAGE_NAME }}:latest`,
+      },
+    });
+  }
   const loading = Logger.createLoading();
   loading.start(chalk.cyan('开始创建 Github actions 工作流'));
-  let yamlStrData = YAML.stringify(yamlData);
+  let yamlStrData = YAML.stringify(yamlData, { lineWidth: 0 });
   if (isUpdateNpmVersion) {
     yamlStrData = yamlStrData.replace(/chore: published tag\n\s+(.*?)/g, 'chore: published tag $1');
   }

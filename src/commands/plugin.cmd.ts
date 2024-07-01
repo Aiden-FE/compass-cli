@@ -53,7 +53,8 @@ export default (program: Command) => {
 \t\t\t- prettyquick\tPrettyQuick 在Commit前仅对变更文件进行快速格式化,该插件依赖于githooks及prettier插件`,
     )
     .option('-P, --path [path]', '项目路径,默认为当前路径')
-    .action(async ({ name: inputName, type: inputType, path: inputPath }) => {
+    .option('-M, --pkg-manager [pkgManager]', '指定npm管理器. npm,yarn,pnpm')
+    .action(async ({ name: inputName, type: inputType, path: inputPath, pkgManager: inputPkgManager }) => {
       // 确认操作的类型
       let type: 'add' | 'remove' = inputType;
       let basePath = inputPath || undefined;
@@ -132,7 +133,7 @@ export default (program: Command) => {
           add: addGithooksPlugin,
           remove: removeGithooksPlugin,
         };
-        const pkgManager: PkgManager = scanDependencyManager({ cwd: basePath });
+        const pkgManager: PkgManager = inputPkgManager || scanDependencyManager({ cwd: basePath });
         await action[type]({ pkgManager, cwd: basePath });
         return;
       }
@@ -142,7 +143,7 @@ export default (program: Command) => {
           add: addPrettierPlugin,
           remove: removePrettierPlugin,
         };
-        const pkgManager: PkgManager = scanDependencyManager({ cwd: basePath });
+        const pkgManager: PkgManager = inputPkgManager || scanDependencyManager({ cwd: basePath });
         await action[type]({ pkgManager, cwd: basePath });
         return;
       }
@@ -152,7 +153,7 @@ export default (program: Command) => {
           add: addPrettyQuickPlugin,
           remove: removePrettyQuickPlugin,
         };
-        const pkgManager: PkgManager = scanDependencyManager({ cwd: basePath });
+        const pkgManager: PkgManager = inputPkgManager || scanDependencyManager({ cwd: basePath });
         await action[type]({ pkgManager, cwd: basePath });
         return;
       }
@@ -162,7 +163,7 @@ export default (program: Command) => {
           add: addCommitlintPlugin,
           remove: removeCommitlintPlugin,
         };
-        const pkgManager: PkgManager = scanDependencyManager({ cwd: basePath });
+        const pkgManager: PkgManager = inputPkgManager || scanDependencyManager({ cwd: basePath });
         await action[type]({ pkgManager, cwd: basePath });
         return;
       }
@@ -172,7 +173,7 @@ export default (program: Command) => {
           add: addEslintPlugin,
           remove: removeEslintPlugin,
         };
-        const pkgManager: PkgManager = scanDependencyManager({ cwd: basePath });
+        const pkgManager: PkgManager = inputPkgManager || scanDependencyManager({ cwd: basePath });
         await action[type]({ pkgManager, cwd: basePath });
         return;
       }
@@ -182,7 +183,7 @@ export default (program: Command) => {
           add: addJestPlugin,
           remove: removeJestPlugin,
         };
-        const pkgManager: PkgManager = scanDependencyManager({ cwd: basePath });
+        const pkgManager: PkgManager = inputPkgManager || scanDependencyManager({ cwd: basePath });
         await action[type]({ pkgManager, cwd: basePath });
         return;
       }
@@ -191,7 +192,7 @@ export default (program: Command) => {
         const action = {
           add: addGithubActionsPlugin,
         };
-        const pkgManager: PkgManager = scanDependencyManager({ cwd: basePath });
+        const pkgManager: PkgManager = inputPkgManager || scanDependencyManager({ cwd: basePath });
         await action.add({ pkgManager, cwd: basePath });
         return;
       }
@@ -201,7 +202,7 @@ export default (program: Command) => {
           add: addStylelintPlugin,
           remove: removeStylelintPlugin,
         };
-        const pkgManager: PkgManager = scanDependencyManager({ cwd: basePath });
+        const pkgManager: PkgManager = inputPkgManager || scanDependencyManager({ cwd: basePath });
         await action[type]({ pkgManager, cwd: basePath });
         return;
       }
