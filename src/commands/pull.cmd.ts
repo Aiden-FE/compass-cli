@@ -10,6 +10,8 @@ import {
   pullNextTemplate,
   pullStylesTemplate,
   pullUtilsTemplate,
+  pullVueLibTemplate,
+  pullVueTemplate,
 } from '@/utils';
 
 export default (program: Command) => {
@@ -19,7 +21,12 @@ export default (program: Command) => {
     .option('-N, --name [name]', '项目路径, 如: new-project, ./temp/new-project')
     .option(
       '-T, --template-type [tempType]',
-      '需要拉取的模板类型\n\t\t\t\t\t- custom\t自定义模板,仅支持Github模板. 自动将.handlebars后缀文件同路径编译为无后缀的文件,变量可按需提供\n\t\t\t\t\t- nextjs\tNextjs SSR项目模板\n\t\t\t\t\t- utils\tUtils实用程序工具库模板\n\t\t\t\t\t- cli\tCommandline命令行模板\n\t\t\t\t\t- styles\tStyles基础样式库模板',
+      `需要拉取的模板类型
+\t\t\t\t\t\t- custom\t自定义模板,仅支持Github模板. 自动将.handlebars后缀文件同路径编译为无后缀的文件,变量可按需提供
+\t\t\t\t\t\t- nextjs\tNextjs SSR项目模板
+\t\t\t\t\t\t- utils\tUtils实用程序工具库模板
+\t\t\t\t\t\t- cli\tCommandline命令行模板
+\t\t\t\t\t\t- styles\tStyles基础样式库模板`,
     )
     .option('--repo-author [repoAuthor]', '仅自定义模板下有效. 指定仓库作者名称')
     .option('--repo-name [repoName]', '仅自定义模板下有效. 指定仓库名称')
@@ -77,6 +84,26 @@ export default (program: Command) => {
 
       if (tempType === 'nextjs') {
         await pullNextTemplate({
+          projectPath,
+          templateData: await tempConfig.getTemplateVars({
+            projectName,
+          }),
+        });
+        return;
+      }
+
+      if (tempType === 'vue') {
+        await pullVueTemplate({
+          projectPath,
+          templateData: await tempConfig.getTemplateVars({
+            projectName,
+          }),
+        });
+        return;
+      }
+
+      if (tempType === 'vue-lib') {
+        await pullVueLibTemplate({
           projectPath,
           templateData: await tempConfig.getTemplateVars({
             projectName,

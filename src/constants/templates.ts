@@ -54,6 +54,42 @@ export const SELECT_TEMPLATE = [
     },
   },
   {
+    name: 'Vue 基础项目模板',
+    value: 'vue',
+    getTemplateVars: async (options?: any) => {
+      const result = {
+        projectName: await input({
+          message: '请输入项目名称',
+          default: options.projectName,
+        }),
+        projectDescription:
+          options?.projectDescription ||
+          (await input({
+            message: '[可选]请输入项目描述',
+          })),
+      };
+      return result;
+    },
+  },
+  {
+    name: 'Vue 组件库模板',
+    value: 'vue-lib',
+    getTemplateVars: async (options?: any) => {
+      const result = {
+        projectName: await input({
+          message: '请输入项目名称',
+          default: options.projectName,
+        }),
+        projectDescription:
+          options?.projectDescription ||
+          (await input({
+            message: '[可选]请输入项目描述',
+          })),
+      };
+      return result;
+    },
+  },
+  {
     name: 'Utils 实用程序工具库模板',
     value: 'utils',
     getTemplateVars: async (options?: any) => {
