@@ -11,6 +11,7 @@ export const SELECT_TEMPLATE = [
   {
     name: '自定义模板',
     value: 'custom',
+    description: '自定义模板,仅支持Github模板. 自动将.handlebars后缀文件同路径编译为无后缀的文件,变量可按需提供',
     getTemplateVars: async (options?: any) => {
       const tempData = await input({
         message: '[可选]可在此处提供模板变量, 请输入可被JSON.parse处理的对象数据或JSON数据',
@@ -74,6 +75,24 @@ export const SELECT_TEMPLATE = [
   {
     name: 'Vue 组件库模板',
     value: 'vue-lib',
+    getTemplateVars: async (options?: any) => {
+      const result = {
+        projectName: await input({
+          message: '请输入项目名称',
+          default: options.projectName,
+        }),
+        projectDescription:
+          options?.projectDescription ||
+          (await input({
+            message: '[可选]请输入项目描述',
+          })),
+      };
+      return result;
+    },
+  },
+  {
+    name: 'Uniapp 基础项目模板',
+    value: 'uniapp',
     getTemplateVars: async (options?: any) => {
       const result = {
         projectName: await input({
