@@ -7,6 +7,7 @@ import {
   Logger,
   pullCliTemplate,
   pullCustomTemplate,
+  pullNestTemplate,
   pullNextTemplate,
   pullStylesTemplate,
   pullUniappTemplate,
@@ -104,6 +105,16 @@ export default (program: Command) => {
 
       if (tempType === 'vue-lib') {
         await pullVueLibTemplate({
+          projectPath,
+          templateData: await tempConfig.getTemplateVars({
+            projectName,
+          }),
+        });
+        return;
+      }
+
+      if (tempType === 'nest') {
+        await pullNestTemplate({
           projectPath,
           templateData: await tempConfig.getTemplateVars({
             projectName,

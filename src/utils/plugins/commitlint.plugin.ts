@@ -8,7 +8,7 @@ import Logger from '../logger';
 import { addGithooksPlugin } from './githooks.plugin';
 import { deleteFilesSync } from '../delete-files-sync';
 
-const COMMITLINT_CONFIG_FILE = `export default {
+const COMMITLINT_CONFIG_FILE = `module.exports = {
   extends: ['@commitlint/config-conventional'],
 };
 `;
