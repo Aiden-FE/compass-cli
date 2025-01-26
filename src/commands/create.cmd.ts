@@ -10,13 +10,63 @@ import {
   createVue,
   selectPkgManager,
   createAngular,
+  createFastify,
 } from '@/utils';
 import { PkgManager } from '@/interfaces';
 
 interface CommandOptions {
-  projectType?: 'turboMonorepo' | 'uniapp' | 'vue' | 'react' | 'electron' | 'nest' | 'next' | 'angular' | string;
+  projectType?:
+    | 'turboMonorepo'
+    | 'uniapp'
+    | 'vue'
+    | 'react'
+    | 'electron'
+    | 'nest'
+    | 'next'
+    | 'angular'
+    | 'fastify'
+    | string;
   pkgManager?: PkgManager;
 }
+
+const projectTypes = [
+  {
+    name: 'Vue 项目',
+    value: 'vue',
+  },
+  {
+    name: 'React 项目',
+    value: 'react',
+  },
+  {
+    name: 'Angular 项目',
+    value: 'angular',
+  },
+  {
+    name: 'Next SSR项目',
+    value: 'next',
+  },
+  {
+    name: 'Turbo monorepo项目',
+    value: 'turboMonorepo',
+  },
+  {
+    name: 'Uniapp 跨端项目',
+    value: 'uniapp',
+  },
+  {
+    name: 'Electron 桌面端项目',
+    value: 'electron',
+  },
+  {
+    name: 'Nest 后端项目',
+    value: 'nest',
+  },
+  {
+    name: 'Fastify 后端项目',
+    value: 'fastify',
+  },
+];
 
 /**
  * @description 创建项目
@@ -31,7 +81,11 @@ export default (program: Command) => {
     .description('快速创建官方标准项目')
     .option(
       '-T, --project-type [projectType]',
-      '需要创建的项目类型\n\t\t\t\t\t- vue\tVue项目\n\t\t\t\t\t- react\tReact项目\n\t\t\t\t\t- angular\tAngular项目\n\t\t\t\t\t- next\tNext SSR项目\n\t\t\t\t\t- turboMonorepo\tTurbo monorepo项目\n\t\t\t\t\t- uniapp\tUniapp跨端项目\n\t\t\t\t\t- electron\tElectron桌面端项目\n\t\t\t\t\t- nest\tNest后端项目',
+      `需要创建的项目类型${projectTypes.reduce((desc, item) => {
+        // eslint-disable-next-line no-param-reassign
+        desc += `\n\t\t\t\t\t- ${item.value}\t${item.name}`;
+        return desc;
+      }, '')}`,
     )
     .option('-M, --pkg-manager [pkgManager]', '指定npm管理器. npm,yarn,pnpm')
     .action(async (options: CommandOptions) => {
@@ -42,40 +96,7 @@ export default (program: Command) => {
               type: 'list',
               name: 'projectType',
               message: '请选择模板',
-              choices: [
-                {
-                  name: 'Vue 项目',
-                  value: 'vue',
-                },
-                {
-                  name: 'React 项目',
-                  value: 'react',
-                },
-                {
-                  name: 'Angular 项目',
-                  value: 'angular',
-                },
-                {
-                  name: 'Next SSR项目',
-                  value: 'next',
-                },
-                {
-                  name: 'Turbo monorepo项目',
-                  value: 'turboMonorepo',
-                },
-                {
-                  name: 'Uniapp 跨端项目',
-                  value: 'uniapp',
-                },
-                {
-                  name: 'Electron 桌面端项目',
-                  value: 'electron',
-                },
-                {
-                  name: 'Nest 后端项目',
-                  value: 'nest',
-                },
-              ],
+              choices: projectTypes,
             },
           ]);
       if (projectType === 'turboMonorepo') {
@@ -102,6 +123,9 @@ export default (program: Command) => {
       }
       if (projectType === 'angular') {
         await createAngular();
+      }
+      if (projectType === 'fastify') {
+        await createFastify();
       }
     });
 };

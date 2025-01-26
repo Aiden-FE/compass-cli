@@ -7,6 +7,7 @@ import {
   Logger,
   pullCliTemplate,
   pullCustomTemplate,
+  pullLocalTemplate,
   pullNestTemplate,
   pullNextTemplate,
   pullStylesTemplate,
@@ -41,6 +42,7 @@ export default (program: Command) => {
       '--repo-template-data [repoTemplateData]',
       '仅自定义模板下有效. 可在此处提供模板变量, 请输入可被JSON.parse处理的对象数据或JSON数据',
     )
+    .option('-P, --local-template-path [localTemplatePath]', '仅本地模板下有效,指定本地模板地址')
     .action(async (options) => {
       let repoTemplateData: object | undefined;
       if (options.repoTemplateData) {
@@ -160,6 +162,16 @@ export default (program: Command) => {
             projectName,
           }),
         });
+        return;
+      }
+
+      if (tempType === 'local') {
+        const templateData = await tempConfig.getTemplateVars({
+          projectName,
+          localTemplatePath: options.localTemplatePath,
+          templateData: repoTemplateData,
+        });
+        await pullLocalTemplate(templateData);
         return;
       }
 

@@ -1,4 +1,5 @@
 import { input, confirm } from '@inquirer/prompts';
+import path from 'node:path';
 
 export const STYLELINT_PLUGINS = [
   { name: 'Vue', value: 'vue' },
@@ -244,6 +245,58 @@ export const SELECT_TEMPLATE = [
             message: '是否启用 Stylelint 样式检查',
             default: true,
           })),
+      };
+    },
+  },
+  {
+    name: '本地模板',
+    value: 'local',
+    getTemplateVars: async (options?: any) => {
+      const result = {
+        localTemplatePath: path.resolve(
+          options.localTemplatePath ||
+            (await input({
+              message: '请输入本地模板路径',
+              validate(value) {
+                return !!value;
+              },
+            })),
+        ),
+        ignoreFilesStr:
+          options.repoIgnoreFiles ||
+          (await input({
+            message:
+              '[可选]可在此处提供需要忽略的文件,多个文件请以","分隔,例如: "package.json,README.md" 等,模板内文件路径后缀命中的文件不会被编译',
+          })) ||
+          undefined,
+      } as Record<string, any>;
+
+      if (options.templateData) {
+        result.templateData = options.templateData;
+      } else {
+        const tempData = await input({
+          message: '[可选]可在此处提供模板变量, 请输入可被JSON.parse处理的对象数据或JSON数据',
+          validate(value) {
+            try {
+              if (!value) {
+                return true;
+              }
+              const data = JSON.parse(value);
+              if (typeof data === 'object') {
+                return true;
+              }
+              return '请输入可被JSON.parse处理的对象数据或JSON数据';
+            } catch {
+              return '请输入可被JSON.parse处理的对象数据或JSON数据';
+            }
+          },
+        });
+        result.templateData = tempData ? JSON.parse(tempData) : {};
+      }
+
+      return {
+        ...options,
+        ...result,
       };
     },
   },

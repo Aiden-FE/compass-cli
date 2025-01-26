@@ -6,3 +6,4 @@ export { default as createElectron } from './create-electron';
 export { default as createNest } from './create-nest';
 export { default as createNext } from './create-next';
 export { default as createAngular } from './create-angular';
+export { default as createFastify } from './create-fastify';

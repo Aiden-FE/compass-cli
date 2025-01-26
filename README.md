@@ -14,12 +14,16 @@
 
 |                                          Name                                          |                            Description                             |
 | :------------------------------------------------------------------------------------: | :----------------------------------------------------------------: |
-|         [Utils](https://github.com/Aiden-FE/compass-template/tree/temp/utils)          |                      Utils实用程序工具库模板                       |
-|        [Styles](https://github.com/Aiden-FE/compass-template/tree/temp/styles)         |                        Styles基础样式库模板                        |
-|       [Commandline](https://github.com/Aiden-FE/compass-template/tree/temp/cli)        |                       Commandline 命令行模板                       |
+|         [Nextjs](https://github.com/Aiden-FE/compass-template/tree/temp/next)          |                         Nextjs SSR项目模板                         |
 |           [Vue](https://github.com/Aiden-FE/compass-template/tree/temp/vue)            |                          Vue 基础项目模板                          |
 | [VueComponents](https://github.com/Aiden-FE/compass-template/tree/temp/vue-components) |                           Vue 组件库模板                           |
+|        [Uniapp](https://github.com/Aiden-FE/compass-template/tree/temp/uni-app)        |                        Uniapp 基础项目模板                         |
+|         [Nestjs](https://github.com/Aiden-FE/compass-template/tree/temp/nest)          |                          Nest 服务端模板                           |
+|         [Utils](https://github.com/Aiden-FE/compass-template/tree/temp/utils)          |                      Utils实用程序工具库模板                       |
+|       [Commandline](https://github.com/Aiden-FE/compass-template/tree/temp/cli)        |                       Commandline 命令行模板                       |
+|        [Styles](https://github.com/Aiden-FE/compass-template/tree/temp/styles)         |                        Styles基础样式库模板                        |
 |                                       自定义模板                                       | 支持拉取Github自定义模板,支持注入模板变量,排除模板文件等定制化处理 |
+|                                        本地模板                                        |                         从本地模板创建项目                         |
 
 `compass plugin` 向项目添加或删除插件, `compass plugin --help` 可以获得更多可选项说明,支持创建的插件如下:
 
@@ -46,6 +50,7 @@
 |  Uniapp  |  Uniapp 跨端项目   |
 | Electron | Electron桌面端项目 |
 |   Nest   |    Nest后端项目    |
+| Fastify  |  Fastify后端项目   |
 
 ## Contributes
 
